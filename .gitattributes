@@ -1,0 +1,20 @@
+* text eol=lf
+
+*.js linguist-language=java
+*.css linguist-language=java
+*.html linguist-language=java
+*.htm linguist-language=java
+*.btl linguist-language=java
+
+*.jar binary
+*.war binary
+*.ear binary
+*.zip binary
+*.tar.gz binary
+*.rar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.tif binary
+*.webp binary

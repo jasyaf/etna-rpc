@@ -1,0 +1,164 @@
+<!-- #set(java.util.ArrayList<java.util.Map.Entry<String,org.etnaframework.rpc.server.RpcMeta>> rpcs) -->
+<!-- #set(org.etnaframework.rpc.server.RpcMeta rpcMeta) -->
+<!-- #set(org.etnaframework.core.web.mapper.CmdMappers$StageTimeSpanStat stat) -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            -webkit-text-size-adjust: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, button, input, select, textarea {
+            font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+        }
+
+        address, cite, dfn, em, var {
+            font-style: normal;
+        }
+
+        code, kbd, pre, samp {
+            font-family: courier new, courier, monospace;
+        }
+
+        small {
+            font-size: 12px;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            outline: 0 none
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        sup {
+            vertical-align: text-top;
+        }
+
+        sub {
+            vertical-align: text-bottom;
+        }
+
+        legend {
+            color: #000;
+        }
+
+        fieldset, img {
+            border: 0;
+        }
+
+        button, input, select, textarea {
+            font-size: 100%;
+            resize: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .fix:after {
+            content: '\20';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        .fix {
+            *zoom: 1;
+        }
+
+        body {
+            padding: 2px;
+        }
+
+        td, tr {
+            line-height: 28px;
+            font-size: 12px;
+            text-align: left;
+            padding: 0 10px;
+        }
+
+        .dark_blue {
+            background: #4E81BD;
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px
+        }
+
+        .dark_blue a {
+            text-decoration: underline;
+            color: #fff;
+        }
+
+        .blue {
+            background: #95B3D7;
+            font-size: 12px
+        }
+
+        .blue td {
+            padding: 0 10px;
+        }
+
+        .light_blue {
+            background: #DBE5F1
+        }
+    </style>
+    <title>${title}</title>
+</head>
+<body>
+<table width="100%">
+    <tbody>
+    <tr class="dark_blue">
+        <td>rpc</td>
+        <td>
+            <a href="${url}?timesOrder=true">times</a>
+            ${timesOrder}
+        </td>
+        <td>
+            <a href="${url}?avgOrder=true">avg</a>
+            ${avgOrder}
+        </td>
+        <td>slow</td>
+        <td>slow_avg</td>
+        <td>max_span</td>
+        <td>slow_span</td>
+    </tr>
+    <!--  #for(e : rpcs) -->
+    <tr class="light_blue">
+        <!--  #set(rpcMeta= e.getValue())  -->
+        <!-- #set(stat= rpcMeta.stat)  -->
+        <td>${rpcMeta.name}</td>
+        <td>${stat.allNum}</td>
+        <!-- #if(stat.allNum == 0) -->
+        <td>${stat.allNum}MS</td>
+        <!-- #else -->
+        <td>${stat.allSpan / stat.allNum} MS</td>
+        <!-- #endif -->
+        <td>${stat.slowNum}</td>
+        <!-- #if(stat.slowNum == 0) -->
+        <td>${stat.slowNum} MS</td>
+        <!-- #else -->
+        <td>${stat.slowSpan / stat.slowNum} MS</td>
+        <!-- #endif -->
+        <td>${stat.maxSpan}</td>
+        <td>${stat.slowSpan}</td>
+    </tr>
+    <!-- #end -->
+    </tbody>
+</table>
+</body>
+</html>
